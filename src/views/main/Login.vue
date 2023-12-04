@@ -55,7 +55,6 @@
 
 import api from "@/api"
 
-
 export default {
   data() {
     //验证规则
