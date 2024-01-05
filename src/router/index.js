@@ -21,7 +21,15 @@ const routes = [
       meta: {
         requireAuth: true // 标记需要登录
       }
-    }]
+    },
+    {
+      path: 'information',
+      name: 'Information',
+      component: () => import("../views/main/Information.vue"),
+      meta: {
+        requireAuth: true // 标记需要登录
+      }
+    }],
   },
   {
     path: '/login',
