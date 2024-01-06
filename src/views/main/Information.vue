@@ -1,6 +1,5 @@
 <template>
     <div>
-  
       <HeaderNav></HeaderNav>
       个人信息
     </div>
