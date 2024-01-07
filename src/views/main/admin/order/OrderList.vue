@@ -1,11 +1,11 @@
 <template>
     <el-table :data="tableData">
         <el-table-column label="订单ID" width="200" prop="OrderID"></el-table-column>
-        <el-table-column label="退票ID" width="200" prop="RefundID"></el-table-column>
-        <el-table-column label="退票原因" width="200" prop="RefundReason"></el-table-column>
-        <el-table-column label="退票时间" width="200" prop="RefundTime"></el-table-column>
+        <el-table-column label="订单号" width="200" prop="OrderStatus"></el-table-column>
+        <el-table-column label="订单时间" width="200" prop="PurchaseTime"></el-table-column>
+        <el-table-column label="数量" width="200" prop="Quantity"></el-table-column>
+        <el-table-column label="票ID" width="200" prop="TicketID"></el-table-column>
         <el-table-column label="账号ID" width="200" prop="UserID"></el-table-column>
-        <el-table-column label="处理状态" width="200" prop="TicketStatus"></el-table-column>
     </el-table>
 </template>
   
@@ -27,16 +27,16 @@ export default {
         }
     },
     computed: {
-        // ...mapGetters('login', ['getUserID']),
-        // ...mapState('login', ['user']),
+        ...mapGetters('login', ['getUserID']),
+        ...mapState('login', ['user']),
     },
     mounted() {
-        // console.log("UserID from Vuex:", this.getUserID);
+        console.log("UserID from Vuex:", this.getUserID);
         // this.Form.UserID = this.getUserID;
         console.log(this.Form)
         const changePageHandler = this.changePageHandler;
         eventBus.on("changePage", changePageHandler);
-        this.$api.selectRefund(this.Form).then(res => {
+        this.$api.selectOrder(this.Form).then(res => {
             console.log(res.data)
             if (res.data.code == 2000) {
                 this.tableData = res.data.data,
@@ -59,7 +59,7 @@ export default {
             // 更新请求参数
             this.Form.Page = this.currentPage;
             console.log(this.Form);
-            this.$api.selectRefund(this.Form).then(res => {
+            this.$api.selectOrder(this.Form).then(res => {
                 console.log(res.data);
                 if (res.data.code == 2000) {
                     this.tableData = res.data.data;

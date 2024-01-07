@@ -6,8 +6,8 @@
 </template>
   
 <script>
-import RefundPagination from './refund/RefundPagination.vue';
-import RefundList from './refund/RefundList.vue';
+import RefundPagination from './RefundPagination.vue';
+import RefundList from './RefundList.vue';
 
 export default {
     components: {

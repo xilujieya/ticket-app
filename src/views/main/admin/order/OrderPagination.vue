@@ -37,7 +37,7 @@ export default {
   },
   mounted() {
     // this.Form.UserID = this.getUserID;
-    this.$api.selectRefund(this.Form).then(res => {
+    this.$api.selectOrder(this.Form).then(res => {
       console.log(res.data)
       if (res.data.code == 2000) {
         this.total = res.data.totalPage * 10

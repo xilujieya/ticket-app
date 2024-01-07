@@ -2,7 +2,9 @@
     <el-menu :default-active="activeIndex" class="el-menu" mode="horizontal" @select="handleSelect" router>
         <el-menu-item index="/admin/adminticket">售票管理</el-menu-item>
         <el-menu-item index="/admin/theater">剧院管理</el-menu-item>
-        <el-menu-item index="/admin/adminrefund">订单管理</el-menu-item>
+        <el-menu-item index="/admin/adminrefund">退票管理</el-menu-item>
+        <el-menu-item index="/admin/adminorder">订单查询</el-menu-item>
+
         <div class="flex-grow" />
         <el-menu-item index="/adlogin">登录</el-menu-item>
         <el-sub-menu index="3">
