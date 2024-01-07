@@ -16,12 +16,21 @@
     props: {
       paymentInfo: String,
       qrCode: String,
-      orderID: Number,
+      orderID: {
+        type:Number,
+            default:function(){
+                return [
+                    {
+                        value:1,
+                    }
+                ]
+            }
+      },
     },
     methods: {
       handlePaymentComplete() {
         const formData = new URLSearchParams();
-        formData.append('OrderID', 2024010522400628);
+        formData.append('OrderID', this.orderID);
         formData.append('OrderStatus', '已支付');
         
 

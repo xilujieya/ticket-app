@@ -106,14 +106,14 @@ export default {
             selectedTimer: null,
             selectedQuantity: 1,
             selectedType: null,
-            // postData: {
-            //     UserID: String(666666),
-            //     TicketID: String(32434),
-            //     // timerData: ticketInfo.timerData,
-            //     PurchaseTime: new Date().toLocaleString(),
-            //     OrderStatus: "已支付",
-            //     Quantity: String(1),
-            // }
+            postData: {
+                UserID: this.$store.state.login.user.data.UserID,
+                TicketID: String(32434),
+                // timerData: ticketInfo.timerData,
+                PurchaseTime: new Date().toLocaleString(),
+                OrderStatus: "已支付",
+                Quantity: String(1),
+            },
             showConfirmDialog: false,
             paymentInfo: '', // 从后端获取的支付信息
             qrCode: '',
@@ -155,42 +155,16 @@ export default {
             const formattedDate = `${year}-${month}-${day}`;
 
             console.log(formattedDate);
-            // const postData = {
-            //     // 在这里添加需要发送的数据，例如 ticketInfo 中的 username、timerData、counter 等
-            //     UserID: String(666666),
-            //     TicketID: String(32434),
-            //     // timerData: ticketInfo.timerData,
-            //     PurchaseTime: new Date().toLocaleString(),
-            //     OrderStatus: "已支付",
-            //     Quantity: String(1),
-            //     // ...其他属性
-            // };
-            // // 关闭购票对话框
-            // axios.post('http://39.106.37.28:5000/orders', postData)
-            //     .then(response => {
-            //         // 处理后端响应，可以在这里更新前端页面等
-            //         console.log('后端响应:', response.data);
-
-            //         // 关闭购票对话框
-            //         this.ticketDialogVisible = false;
-            //     })
-            //     .catch(error => {
-            //         // 处理请求错误，例如显示错误提示等
-            //         console.error('请求错误:', error);
-
-            //         // 关闭购票对话框，或者执行其他逻辑
-            //         this.ticketDialogVisible = false;
-            //     });
 
             // 创建一个空的 URLSearchParams 对象
             const formData = new URLSearchParams();
 
             // 添加键值对到对象中
-            formData.append('UserID', '666666');
-            formData.append('TicketID', '32434');
-            formData.append('PurchaseTime', '2023-5-8');
+            formData.append('UserID', this.postData.UserID);
+            formData.append('TicketID', this.postData.TicketID);
+            formData.append('PurchaseTime', this.postData.PurchaseTime);
             formData.append('OrderStatus', '未支付');
-            formData.append('Quantity', '5');
+            formData.append('Quantity', this.postData.Quantity);
             // ... 添加其他键值对
 
             // 使用 fetch 发送 POST 请求

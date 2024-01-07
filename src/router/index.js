@@ -21,26 +21,26 @@ const routes = [
       meta: {
         requireAuth: true // 标记需要登录
       },
-      children:[
+      children: [
         {
-          path:"open",
-          name:"Open",
-          component:()=>import("../views/main/HomePage/sub/open.vue"),
+          path: "open",
+          name: "Open",
+          component: () => import("../views/main/HomePage/sub/open.vue"),
         },
         {
-          path:"golife",
-          name:"Golife",
-          component:()=>import("../views/main/HomePage/sub/golife.vue"),
+          path: "golife",
+          name: "Golife",
+          component: () => import("../views/main/HomePage/sub/golife.vue"),
         },
         {
-          path:"logo",
-          name:"Logo",
-          component:()=>import("../views/main/HomePage/sub/logo.vue"),
+          path: "logo",
+          name: "Logo",
+          component: () => import("../views/main/HomePage/sub/logo.vue"),
         },
         {
-          path:"heigh",
-          name:"Heigh",
-          component:()=>import("../views/main/HomePage/sub/heigh.vue"),
+          path: "heigh",
+          name: "Heigh",
+          component: () => import("../views/main/HomePage/sub/heigh.vue"),
         },
       ]
     },
@@ -51,13 +51,47 @@ const routes = [
       meta: {
         requireAuth: true // 标记需要登录
       }
+    },
+    {
+      path: 'ticket',
+      name: 'Ticket',
+      component: () => import("../views/main/Product/ticket.vue"),
+      meta: {
+        requireAuth: true // 标记需要登录
+      }
     }],
   },
   {
     path: '/login',
     name: 'Login',
     component: () => import("../views/main/Login.vue")
-  }
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: () => import("../views/main/admin/AdminHome.vue"),
+    children: [{
+      path: 'adminticket',
+      name: 'AdminTicket',
+      component: () => import("../views/main/admin/AdminTicket.vue")
+    },
+    {
+      path: 'theater',
+      name: 'Theater',
+      component: () => import("../views/main/admin/Theater.vue")
+    },
+    {
+      path: 'adminrefund',
+      name: 'AdminRefund',
+      component: () => import("../views/main/admin/AdminRefund.vue")
+    },
+    ]
+  },
+  {
+    path: '/adlogin',
+    name: 'adLogin',
+    component: () => import("../views/main/admin/adLogin.vue")
+  },
 ];
 
 

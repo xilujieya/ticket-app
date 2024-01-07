@@ -13,9 +13,7 @@ export default {
     data(){
         return{
             nowIndex:0,
-            
         }
-
     },
     props:{
         timerData:{

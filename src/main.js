@@ -9,11 +9,13 @@ import './router/permission'
 import "./utils/init"
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/css'
-import axios from 'axios';
+import api from './api'
+import  "./utils/eventBus"
 
 
 const app = createApp(App)
 app.use(ElementPlus)
 app.use(router)
+app.config.globalProperties.$api = api;
 app.mount('#app')
 app.use(store)
