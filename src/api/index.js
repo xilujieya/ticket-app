@@ -19,6 +19,57 @@ const api = {
     selectRefund(params) {
         return axios.get(base.baseUrl + base.selectRefund, {params})
     },
+    selectTheater(params) {
+        return axios.get(base.baseUrl + base.selectTheater, {params})
+    },
+    deleteTheater(params) {
+        return axios.delete(base.baseUrl + base.deleteTheater, {params})
+    },
+    searchTheater(params) {
+        return axios.get(base.baseUrl + base.searchTheater, {params})
+    },
+    refundOrder(params) {
+        return axios.post(base.baseUrl + base.refundOrder, params)
+    },
+    addTheater(params) {
+        return axios.post(base.baseUrl + base.addTheater, params)
+    },
+    editorTheator(params) {
+        return axios.put(base.baseUrl + base.editorTheator, params)
+    },
+    commitRefund(params) {
+        return axios.put(base.baseUrl + base.commitRefund, params)
+    },
+    selectTicket(params) {
+        return axios.get(base.baseUrl + base.selectTicket, {params})
+    },
+    searchTicket(params) {
+        return axios.get(base.baseUrl + base.searchTicket, {params})
+    },
+    addTicket(params) {
+        return axios.post(base.baseUrl + base.addTicket, params)
+    },
+    deleteTicket(params) {
+        return axios.delete(base.baseUrl + base.deleteTicket+'/' + params)
+    },
+    editorTicket(params) {
+        return axios.put(base.baseUrl + base.editorTicket, params)
+    },
+    selectAdmin(params) {
+        return axios.get(base.baseUrl + base.selectAdmin, {params})
+    },
+    deleteAdmin(params) {
+        return axios.delete(base.baseUrl + base.deleteAdmin, {params})
+    },
+    addAdmin(params) {
+        return axios.post(base.baseUrl + base.addAdmin, params)
+    },
+    searchAdmin(params) {
+        return axios.get(base.baseUrl + base.searchAdmin, {params})
+    },
+    editorAdmin(params) {
+        return axios.put(base.baseUrl + base.editor, params)
+    },
 }
 
 export default api

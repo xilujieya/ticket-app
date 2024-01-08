@@ -17,7 +17,7 @@ export default {
     return {
       currentPage: 1,
       Form: {
-        TheaterID: "",
+        AdminID: "",
       },
       count: 0,
       total: 1,
@@ -33,7 +33,7 @@ export default {
     const deleteSuccessHandler = this.deleteSuccessHandler;
     eventBus.on("onAddSuccess", onAddSuccessHandler);
     eventBus.on("deleteSuccess", deleteSuccessHandler);
-    this.$api.selectTheater(this.Form).then(res => {
+    this.$api.selectAdmin(this.Form).then(res => {
       console.log(res.data)
       if (res.data.code == 2000) {
         this.total = res.data.totalPage * 10
@@ -49,7 +49,7 @@ export default {
       eventBus.emit('changePage', val)
     },
     onAddSuccessHandler() {
-      this.$api.selectTheater(this.Form).then(res => {
+      this.$api.selectAdmin(this.Form).then(res => {
         console.log(res.data)
         if (res.data.code == 2000) {
           this.total = res.data.totalPage * 10
@@ -58,7 +58,7 @@ export default {
       })
     },
     deleteSuccessHandler() {
-      this.$api.selectTheater(this.Form).then(res => {
+      this.$api.selectAdmin(this.Form).then(res => {
         console.log(res.data)
         if (res.data.code == 2000) {
           this.total = res.data.totalPage * 10

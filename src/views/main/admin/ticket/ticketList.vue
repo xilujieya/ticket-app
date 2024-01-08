@@ -1,10 +1,11 @@
 <template>
     <el-table :data="tableData">
-        <el-table-column label="剧院ID" width="200" prop="TheaterID"></el-table-column>
-        <el-table-column label="剧院名称" width="200" prop="TheaterName"></el-table-column>
-        <el-table-column label="剧院地址" width="200" prop="Address"></el-table-column>
-        <el-table-column label="剧院容量" width="200" prop="Capacity"></el-table-column>
-        <el-table-column label="账号ID" width="200" prop="AdminID"></el-table-column>
+        <el-table-column label="票ID" width="170" prop="TicketID"></el-table-column>
+        <el-table-column label="演出场次ID" width="170" prop="ShowID"></el-table-column>
+        <el-table-column label="价格" width="170" prop="Price"></el-table-column>
+        <el-table-column label="票档" width="170" prop="Category"></el-table-column>
+        <el-table-column label="剩余数量" width="170" prop="RemainingQuantity"></el-table-column>
+        <el-table-column label="总数量" width="170" prop="TotalQuantity"></el-table-column>
         <el-table-column label="操作">
             <template #default="scope">
                 <el-button size="small" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
@@ -19,19 +20,19 @@ import eventBus from "@/utils/eventBus.js";
 import { onMounted, onBeforeUnmount } from 'vue';
 import { mapState, mapGetters } from 'vuex';
 import { ElMessage, ElMessageBox } from 'element-plus'
+import base from "@/api/base";
 export default {
     data() {
         return {
             tableData: [],
             Form: {
-                // UserID: "",
                 Page: 1,
             },
             currentPage: 1,
             totalCount: 0,
             totalPage: 1,
-            deleteTheater: {
-                TheaterID: "",
+            deleteTicket: {
+                TicketID: "",
             }
         }
     },
@@ -44,14 +45,14 @@ export default {
         // this.Form.UserID = this.getUserID;
         console.log(this.Form)
         const changePageHandler = this.changePageHandler;
-        const searchTheaterHandler = this.searchTheaterHandler;
+        const searchTicketHandler = this.searchTicketHandler;
         const onAddSuccessHandler = this.onAddSuccessHandler;
         const editorSuccessHandler = this.editorSuccessHandler;
         eventBus.on("changePage", changePageHandler);
-        eventBus.on("searchData", searchTheaterHandler);
+        eventBus.on("searchData", searchTicketHandler);
         eventBus.on("onAddSuccess", onAddSuccessHandler);
         eventBus.on("editorSuccess", editorSuccessHandler);
-        this.$api.selectTheater(this.Form).then(res => {
+        this.$api.selectTicket(this.Form).then(res => {
             console.log(res.data)
             if (res.data.code == 2000) {
                 this.tableData = res.data.data,
@@ -61,7 +62,7 @@ export default {
         })
         onBeforeUnmount(() => {
             eventBus.off("changePage", changePageHandler);
-            eventBus.off("searchData", searchTheaterHandler);
+            eventBus.off("searchData", searchTicketHandler);
             eventBus.off("onAddSuccess", onAddSuccessHandler);
             eventBus.off("editorSuccess", editorSuccessHandler);
         });
@@ -75,7 +76,7 @@ export default {
         fetchData() {
             // 更新请求参数
             this.Form.Page = this.currentPage;
-            this.$api.selectTheater(this.Form).then(res => {
+            this.$api.selectTicket(this.Form).then(res => {
                 if (res.data.code == 2000) {
                     this.tableData = res.data.data;
                 }
@@ -85,8 +86,8 @@ export default {
             eventBus.emit('editorEvent', row);
         },
         handleDelete(index, row) {
-            this.deleteTheater.TheaterID = row.TheaterID;
-            console.log(this.deleteTheater);
+            this.deleteTicket.TicketID = row.TicketID;
+            console.log(this.deleteTicket);
             ElMessageBox.confirm('proxy will permanently delete the file. Continue?', 'Warning',
                 {
                     confirmButtonText: 'OK',
@@ -94,7 +95,7 @@ export default {
                     type: 'warning',
                 })
                 .then(() => {
-                    this.$api.deleteTheater(this.deleteTheater).then(res => {
+                    this.$api.deleteTicket(this.deleteTicket.TicketID).then(res => {
                         console.log(res.data);
                         if (res.data.code == 2000) {
                             this.$message({
@@ -122,7 +123,7 @@ export default {
                     })
                 })
         },
-        searchTheaterHandler(data) {
+        searchTicketHandler(data) {
             if (Array.isArray(data)) {
                 this.tableData = data;
             } else {

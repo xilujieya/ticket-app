@@ -33,7 +33,7 @@ export default {
     const deleteSuccessHandler = this.deleteSuccessHandler;
     eventBus.on("onAddSuccess", onAddSuccessHandler);
     eventBus.on("deleteSuccess", deleteSuccessHandler);
-    this.$api.selectTheater(this.Form).then(res => {
+    this.$api.selectTicket(this.Form).then(res => {
       console.log(res.data)
       if (res.data.code == 2000) {
         this.total = res.data.totalPage * 10
@@ -49,7 +49,7 @@ export default {
       eventBus.emit('changePage', val)
     },
     onAddSuccessHandler() {
-      this.$api.selectTheater(this.Form).then(res => {
+      this.$api.selectTicket(this.Form).then(res => {
         console.log(res.data)
         if (res.data.code == 2000) {
           this.total = res.data.totalPage * 10
@@ -58,7 +58,7 @@ export default {
       })
     },
     deleteSuccessHandler() {
-      this.$api.selectTheater(this.Form).then(res => {
+      this.$api.selectTicket(this.Form).then(res => {
         console.log(res.data)
         if (res.data.code == 2000) {
           this.total = res.data.totalPage * 10
